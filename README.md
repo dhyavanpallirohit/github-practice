@@ -10,3 +10,6 @@ Personal repository for practicing Git and GitHub workflows.
 - Branches
 - Pull requests
 - GitHub Actions
+## GitHub Practice
+
+This line was added directly from GitHub.
