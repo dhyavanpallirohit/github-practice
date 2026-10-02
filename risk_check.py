@@ -1,6 +1,6 @@
 def check_risk(score):
     if score < 0 or score > 100:
-        return "Invalid risk score"
+        raise ValueError("Risk score must be between 0 and 100")
 
     if score >= 70:
         return "High Risk"
