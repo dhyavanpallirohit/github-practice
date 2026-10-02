@@ -27,6 +27,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest
 
+      - name: Show environment
+        run: |
+          echo "Environment: $APP_ENV"
+        env:
+          APP_ENV: ${{ vars.APP_ENV }}
+
+      - name: Verify secret exists
+        run: |
+          if [ -z "$DEMO_API_KEY" ]; then
+            echo "Secret is missing"
+            exit 1
+          fi
+
+          echo "Secret is configured"
+        env:
+          DEMO_API_KEY: ${{ secrets.DEMO_API_KEY }}
+
       - name: Run tests
         run: |
           pytest -v
