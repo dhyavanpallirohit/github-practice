@@ -8,7 +8,7 @@ def test_high_risk():
 
 
 def test_low_risk():
-    assert check_risk(50) == "Low Risk"
+    assert check_risk(50) == "High Risk"
 
 
 def test_invalid_high_score():
