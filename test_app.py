@@ -33,3 +33,41 @@ def test_invalid_score_api():
     response = client.get("/predict?score=150")
 
     assert response.status_code == 400
+
+
+def test_post_predict_high_risk():
+    response = client.post(
+        "/predict",
+        json={"score": 85}
+    )
+
+    assert response.status_code == 200
+    assert response.json()["prediction"] == "High Risk"
+
+
+def test_post_predict_low_risk():
+    response = client.post(
+        "/predict",
+        json={"score": 40}
+    )
+
+    assert response.status_code == 200
+    assert response.json()["prediction"] == "Low Risk"
+
+
+def test_post_predict_invalid_score():
+    response = client.post(
+        "/predict",
+        json={"score": 150}
+    )
+
+    assert response.status_code == 400
+
+
+def test_post_predict_missing_score():
+    response = client.post(
+        "/predict",
+        json={}
+    )
+
+    assert response.status_code == 422
