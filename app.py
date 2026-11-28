@@ -8,7 +8,7 @@ from risk_check import check_risk
 
 app = FastAPI(
     title="Risk Prediction API",
-    version="1.1.0"
+    version="1.2.0"
 )
 
 

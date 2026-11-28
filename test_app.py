@@ -172,3 +172,13 @@ def test_api_key_not_configured(monkeypatch):
     )
 
     assert response.status_code == 503
+
+def test_application_version():
+    response = client.get("/version")
+
+    assert response.status_code == 200
+
+    assert response.json() == {
+        "application": "risk-api",
+        "version": "1.2.0"
+    }
