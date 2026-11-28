@@ -48,6 +48,7 @@ jobs:
           docker run -d \
             --name risk-api \
             -p 8000:8000 \
+            -e API_KEY=test-only-api-key \
             github-practice-risk-api:ci
 
       - name: Wait for API
@@ -57,7 +58,9 @@ jobs:
       - name: Test API
         run: |
           curl --fail http://localhost:8000/
-          curl --fail "http://localhost:8000/predict?score=85"
+          curl --fail \
+            -H "X-API-Key: test-only-api-key" \
+            "http://localhost:8000/predict?score=85"
 
       - name: Show container logs
         if: always()

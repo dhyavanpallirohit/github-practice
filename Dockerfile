@@ -8,6 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY risk_check.py .
 COPY app.py .
+COPY auth.py .
 
 EXPOSE 8000
 

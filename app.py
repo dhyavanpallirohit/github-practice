@@ -1,6 +1,7 @@
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
+from auth import verify_api_key
 
 from risk_check import check_risk
 
@@ -22,7 +23,10 @@ def home():
     }
 
 
-@app.get("/predict")
+@app.get(
+    "/predict",
+    dependencies=[Depends(verify_api_key)]
+)
 def predict(score: int):
     try:
         prediction = check_risk(score)
@@ -39,6 +43,9 @@ def predict(score: int):
         )
 
 
-@app.post("/predict")
+@app.post(
+    "/predict",
+    dependencies=[Depends(verify_api_key)]
+)
 def predict_post(request: RiskRequest):
     return predict(request.score)
