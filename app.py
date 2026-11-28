@@ -49,3 +49,10 @@ def predict(score: int):
 )
 def predict_post(request: RiskRequest):
     return predict(request.score)
+
+@app.get("/version")
+def get_version():
+    return {
+        "application": "risk-api",
+        "version": app.version
+    }
